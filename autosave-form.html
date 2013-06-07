@@ -1,0 +1,62 @@
+<element name="autosave-form" extends="form" attributes="submitInterval successMsg errorMsg" constructor="AutosaveForm">
+
+    <script>
+        function autoSave(formElemIndex, successFx, errorFx) {
+
+        var formElem = document.forms[formElemIndex];
+
+        $.ajax({
+        type: $(formElem).attr('method'),
+        url: $(formElem).attr('action'),
+        data: $(formElem).serialize(),
+        success: function (data) {
+        successFx();
+        },
+        error: function (data) {
+        errorFx();
+        }
+        });
+        }
+
+        function onAutoSaveSuccess() {
+        $('#autosaveSuccessNotification').css('background-color', '#1A1').fadeIn('slow', function () {
+        setTimeout(
+        function () {
+        //wait 15 seconds and fade out
+        $('#autosaveSuccessNotification').fadeOut('slow');
+        }, 15000);
+
+        });
+        }
+        function onAutoSaveError() {
+        //console.log("error");
+        $('#autosaveErrorNotification').css('background-color', '#F00').fadeIn('slow', function () {
+        setTimeout(
+        function () {
+        //wait 15 seconds and fade out
+        $('#autosaveErrorNotification').fadeOut('slow');
+        }, 15000);
+        });
+        }
+
+        Polymer.register(this, {
+        submitInterval: this.submitInterval || 30000,
+
+        successMsg: this.successMsg || "Your form data has been saved.",
+        errorMsg: this.errorMsg || "There was an error saving your form data.",
+
+
+        ready: function () {
+        this.errorMsg += " Will retry in " + parseFloat(this.submitInterval / 1000) + " seconds.";
+        var saveNotification = "<div id='autosaveSuccessNotification' class='autosaveNotifications'>" + this.successMsg + "</div>";
+        var errorNotification = "<div id='autosaveErrorNotification' class='autosaveNotifications'>" + this.errorMsg + "</div>";
+        var styles = "<style> .autosaveNotifications {display:none;color:#FFF;font-weight:bold;text-align:center;position:fixed;top:0;left:0;width:100%;z-index:1000;}</style>";
+        jQuery('body').append(styles).append(saveNotification).append(errorNotification);
+        var formElement = $(this);
+        var formIndex = $('form').index(formElement);
+        setInterval(function () { autoSave(formIndex, onAutoSaveSuccess, onAutoSaveError) }, this.submitInterval);
+        window.manualSubmit = function () { autoSave(formIndex, onAutoSaveSuccess, onAutoSaveError) };
+        }
+        });
+    </script>
+</element>
