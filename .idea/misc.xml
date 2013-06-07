@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleLocalSettings">
+    <option name="availableTasks">
+      <set>
+        <GradleTaskDescriptor>
+          <option name="description" value="Build the entire distribution" />
+          <option name="name" value="build" />
+        </GradleTaskDescriptor>
+        <GradleTaskDescriptor>
+          <option name="description" value="Delete distribution directory: C:\Program Files (x86)\JetBrains\IntelliJ IDEA Community Edition 12.1.3\bin\dist" />
+          <option name="name" value="clean" />
+        </GradleTaskDescriptor>
+        <GradleTaskDescriptor>
+          <option name="description" value="Copy all i18n files to C:\Program Files (x86)\JetBrains\IntelliJ IDEA Community Edition 12.1.3\bin\dist\i18n" />
+          <option name="name" value="i18n" />
+        </GradleTaskDescriptor>
+        <GradleTaskDescriptor>
+          <option name="description" value="Create distribution directory: C:\Program Files (x86)\JetBrains\IntelliJ IDEA Community Edition 12.1.3\bin\dist" />
+          <option name="name" value="init" />
+        </GradleTaskDescriptor>
+        <GradleTaskDescriptor>
+          <option name="description" value="Concatinate all javascript files into one javascript file: C:\Program Files (x86)\JetBrains\IntelliJ IDEA Community Edition 12.1.3\bin\dist\jquery.jqGrid.js" />
+          <option name="name" value="jqgrid" />
+        </GradleTaskDescriptor>
+        <GradleTaskDescriptor>
+          <option name="description" value="Minimize C:\Program Files (x86)\JetBrains\IntelliJ IDEA Community Edition 12.1.3\bin\dist\jquery.jqGrid.js to C:\Program Files (x86)\JetBrains\IntelliJ IDEA Community Edition 12.1.3\bin\dist\jquery.jqGrid.min.js" />
+          <option name="name" value="jqgrid-min" />
+        </GradleTaskDescriptor>
+        <GradleTaskDescriptor>
+          <option name="description" value="Minimize all javascript files to C:\Program Files (x86)\JetBrains\IntelliJ IDEA Community Edition 12.1.3\bin\dist\min" />
+          <option name="name" value="min-files" />
+        </GradleTaskDescriptor>
+        <GradleTaskDescriptor>
+          <option name="name" value="wrap" />
+        </GradleTaskDescriptor>
+      </set>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" assert-keyword="true" jdk-15="true">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>
+
