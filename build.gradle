@@ -1,0 +1,24 @@
+// Pull the plugin from Maven Central
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.eriwen:gradle-js-plugin:1.5.0'
+    }
+}
+// Invoke the plugin
+apply plugin: 'js'
+
+
+minifyJs {
+    source = file("js/src/autosave-form.js")
+    dest = file("autosave-form.min.js")
+    closure {
+        warningLevel = 'QUIET'
+    }
+}
+
+defaultTasks 'build'
+
+task build(dependsOn: minifyJs) << {}
