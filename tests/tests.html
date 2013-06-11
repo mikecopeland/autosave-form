@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>autosave-form tests</title>
+  <link rel="stylesheet" href="qunit/qunit-1.11.0.css">
+  <script src="qunit/qunit-1.11.0.js"></script>
+  <script src="jquery.min.js"></script>
+  <script src="../js/src/autosave-form.js"></script>
+  <script src="tests.js"></script>
+</head>
+<body>
+ 
+<div id="qunit"></div>
+<script>
+    formSuccess = false;
+
+    function bar(){
+       formSuccess = true;
+    }
+</script>
+<form name="foo" action="tests.html" method="post" is="autosave-form" submitInterval="10000" onSuccess="bar()">
+
+    <input name="submit" type="submit"/>
+</form>
+
+</body>
+</html>

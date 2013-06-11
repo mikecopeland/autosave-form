@@ -16,22 +16,32 @@ function autoSave(formElemIndex, successMsg, errorMsg, showTimestamp) {
         url: $(formElem).attr('action'),
         data: $(formElem).serialize(),
         success: function (data) {
-            $('#autosaveSuccessNotification').html(successMsg).css('background-color', '#1A1').fadeIn('slow', function () {
-                setTimeout(function () {
-                    //wait 15 seconds and fade out
-                    $('#autosaveSuccessNotification').fadeOut('slow');
-                }, 15000);
-            });
+            if(typeof $(formElem).attr("onSuccess") !== "undefined"){
+                eval($(formElem).attr("onSuccess"));
+            }
+            else{
+                $('#autosaveSuccessNotification').html(successMsg).css('background-color', '#1A1').fadeIn('slow', function () {
+                                       setTimeout(function () {
+                                           //wait 15 seconds and fade out
+                                           $('#autosaveSuccessNotification').fadeOut('slow');
+                                       }, 15000);
+                                   });
+            }
         },
         error: function (data) {
-            $('#autosaveErrorNotification').html(errorMsg).css('background-color', '#F00').fadeIn('slow', function () {
-                setTimeout(
+            if(typeof $(formElem).attr("onError") !== "undefined"){
+                eval($(formElem).attr("onError"));
+            }
+            else{
+                $('#autosaveErrorNotification').html(errorMsg).css('background-color', '#F00').fadeIn('slow', function () {
+                    setTimeout(
 
-                function () {
-                    //wait 15 seconds and fade out
-                    $('#autosaveErrorNotification').fadeOut('slow');
-                }, 15000);
-            });
+                    function () {
+                        //wait 15 seconds and fade out
+                        $('#autosaveErrorNotification').fadeOut('slow');
+                    }, 15000);
+                });
+            }
         }
     });
 }
